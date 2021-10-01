@@ -41,6 +41,8 @@ describe('Work with basic elements', () => {
         
         cy.get('[data-cy=dataSobrenome]')
             .type('Teste12345{backspace}')
+
+       
     })
 
     it('TextFields', () => {
@@ -72,7 +74,34 @@ describe('Work with basic elements', () => {
         cy.get('#formSexoMasc').should('not.be.checked')
         cy.get("[name=formSexo]").should('have.length', 2)
     })
+    it.only('Checkbox', () => {
+        cy.get('#formComidaPizza')
+            .click()
+            .should('be.checked')
 
+        cy.get('[name=formComidaFavorita]').click({multiple: true})   
+        cy.get('#formComidaPizza').should('not.be.checked')
+        cy.get('#formComidaVegetariana').should('be.checked')
+    })
+
+    it.only('Combo', () => {
+        cy.get('[data-test=dataEscolaridade]')
+            .select('1graucomp')
+            .should('have.value', '1graucomp')
+
+        cy.get('[data-test=dataEscolaridade]')
+            .select('1graucomp')
+            .should('have.value', '1graucomp')
+
+        //TODO Valida as opções do combo
+    })
+    it.only('Combo multiplo', () => {
+        cy.get('[data-testid=dataEsportes]')
+            .select(['natacao','Corrida','nada'])
+        
+
+        //TODO validar opções selecionadas do combo multiplo
+    })
     
-    
+     
 })
