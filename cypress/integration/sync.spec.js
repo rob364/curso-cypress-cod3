@@ -20,7 +20,7 @@ describe('Esperas...', () => {
     it.only('Deve retrys', () => {
         cy.get('#novoCampo').should('not.exist') 
         cy.get('#buttonDelay').click()
-        cy.get('#novoCampo').should('not.exist')
+        cy.get('#novoCampo').should('not.exist')//assertiva
         cy.get('#novoCampo')
             //.should('not.exist')    
             .should('exist')
@@ -28,6 +28,25 @@ describe('Esperas...', () => {
             //
             
        
+    })
+
+    it.only('Uso do find', () =>{
+        cy.get('#buttonListDOM').click()
+        cy.get('#lista li')
+            .find('span')
+            .should('contain','Item 1')
+        //cy.get('#lista li')
+         //   .find('span')
+         //   .should('contain','Item 2')
+        
+        cy.get('#lista li span')
+            .should('contain', 'Item 2')
+    })
+    it('Uso do timeout', () => {
+        //cy.get('#buttonDelay').click()
+        //cy.get('#novoCampo', { timeout: 3000 }).should('exist')
+        
+        
     })
    
     
