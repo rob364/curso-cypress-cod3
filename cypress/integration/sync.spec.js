@@ -30,7 +30,7 @@ describe('Esperas...', () => {
        
     })
 
-    it.only('Uso do find', () =>{
+    it('Uso do find', () =>{
         cy.get('#buttonListDOM').click()
         cy.get('#lista li')
             .find('span')
@@ -42,12 +42,25 @@ describe('Esperas...', () => {
         cy.get('#lista li span')
             .should('contain', 'Item 2')
     })
-    it('Uso do timeout', () => {
+    it.only('Uso do timeout', () => {
         //cy.get('#buttonDelay').click()
         //cy.get('#novoCampo', { timeout: 3000 }).should('exist')
+
+        //cy.get('#buttonListDOM').click()
+        //cy.wait(5000)//espera fixa wait, é para ser evitado dentro da aplicação pq ele a deixa lenta.
+        //cy.get('#lista li span',{ timeout: 30000 })
+            //.should('contain', 'Item 2')
         
+            
+            cy.get('#buttonListDOM').click()
+            cy.get('#lista li span')
+                .should('have.length', 1)
+            cy.get('#lista li span')
+                .should('contain', 'Item 2')
+                
         
     })
+    
    
     
 
