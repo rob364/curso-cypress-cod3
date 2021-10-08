@@ -17,7 +17,7 @@ describe('Esperas...', () => {
         cy.get('#novoCampo').type('funciona')
     })
 
-    it.only('Deve retrys', () => {
+    it('Deve retrys', () => {
         cy.get('#novoCampo').should('not.exist') 
         cy.get('#buttonDelay').click()
         cy.get('#novoCampo').should('not.exist')//assertiva
@@ -42,7 +42,7 @@ describe('Esperas...', () => {
         cy.get('#lista li span')
             .should('contain', 'Item 2')
     })
-    it.only('Uso do timeout', () => {
+    it('Uso do timeout', () => {
         //cy.get('#buttonDelay').click()
         //cy.get('#novoCampo', { timeout: 3000 }).should('exist')
 
@@ -60,6 +60,26 @@ describe('Esperas...', () => {
                 
         
     })
+    it('Click retry', () => {
+        cy.get('#buttonCount')
+            .click()
+            .click()
+            .should('have.value', '111')
+    })
+    
+    it.only('Should vs Then', () => {
+        cy.get('#buttonListDOM').then($el => {
+       
+            //.should('have.lenght',1)
+
+            //console.log($el)
+            expect($el).to.have.length(1)
+            //cy.get('#buttonList')
+        })
+            
+        
+    }) 
+
     
    
     

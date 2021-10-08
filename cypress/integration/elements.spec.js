@@ -1,6 +1,6 @@
 /// <reference types="cypress"/>
 
-describe('Work with basic elements', () => {
+describe.only('Work with basic elements', () => {
     before(() => {
         cy.visit('https://wcaquino.me/cypress/componentes.html')
     })
@@ -74,7 +74,7 @@ describe('Work with basic elements', () => {
         cy.get('#formSexoMasc').should('not.be.checked')
         cy.get("[name=formSexo]").should('have.length', 2)
     })
-    it.only('Checkbox', () => {
+    it('Checkbox', () => {
         cy.get('#formComidaPizza')
             .click()
             .should('be.checked')
@@ -84,7 +84,7 @@ describe('Work with basic elements', () => {
         cy.get('#formComidaVegetariana').should('be.checked')
     })
 
-    it.only('Combo', () => {
+    it('Combo', () => {
         cy.get('[data-test=dataEscolaridade]')
             .select('1graucomp')
             .should('have.value', '1graucomp')
@@ -95,7 +95,7 @@ describe('Work with basic elements', () => {
 
         //TODO Valida as opções do combo
     })
-    it.only('Combo multiplo', () => {
+    it('Combo multiplo', () => {
         cy.get('[data-testid=dataEsportes]')
             .select(['natacao','Corrida','nada'])
         
