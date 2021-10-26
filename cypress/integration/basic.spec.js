@@ -12,16 +12,30 @@ describe('Cypress basics', () => {
         cy.title().should('contain', 'Campo')
 
 
+        let syncTitle
+
         cy.title()
             .should('be.equal', 'Campo de Treinamento')
             .and('contain', 'Campo')
 
-        cy.title().should(title => {
+        cy.title().then(title => {
             console.log(title)
+
+            cy.get('#formNome').type(title)
+
+            syncTitle = title
+
+        })
+        cy.get('[data-cy=dataSobrenome]').then($el => {
+            $el.val(syncTitle)
         })
 
-            //TODO imprimir o log no console.log
-            //TODO escrever o log em um campo de texto
+        cy.get('#elementosForm\\:sugestoes').then($el => {
+            cy.wrap($el).type(syncTitle)
+        })
+
+          
+            
 
     })
 
