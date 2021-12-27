@@ -21,13 +21,17 @@ describe('Dinamic tests', () => {
         cy.get('[data-cy=dataSobrenome]').type('Qualquers')
         cy.get(`[name=formSexo][value=F]`).click()
 
-        cy.get(`[name=formComidaFavorita]`).click({multiple: true})
+        cy.get(`[name=formComidaFavorita]`).each($el => {
+            //$el.click()
+            if ($el.val()  !== 'vegetariano')
+                cy.wrap($el).click
+        })
 
         cy.get('#formEscolaridade').select('Doutorado')
         cy.get('#formEsportes').select('Corrida')
-        /* cy.get('#formCadastrar').click()
-        cy.get('#resultado > :nth-child(1)').should('contain', 'Cadastrado!')   */
-        cy.clickAlert('#formCadastrar', 'Tem certeza que voce eh vegetariano?')
+        cy.get('#formCadastrar').click()
+        cy.get('#resultado > :nth-child(1)').should('contain', 'Cadastrado!')   
+        //cy.clickAlert('#formCadastrar', 'Tem certeza que voce eh vegetariano?')
     })
     
 })
